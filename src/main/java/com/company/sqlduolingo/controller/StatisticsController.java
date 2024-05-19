@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "statistics")
+@RequestMapping(value = "/api/statistics")
 public class StatisticsController {
 
     private final StatisticsService statisticsService;

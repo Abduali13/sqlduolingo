@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "keyword")
+@RequestMapping(value = "/api/keyword")
 public class KeywordController {
 
     private final KeywordService keywordService;

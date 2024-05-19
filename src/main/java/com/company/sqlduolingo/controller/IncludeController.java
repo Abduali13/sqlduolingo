@@ -8,10 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "include")
+@RequestMapping(value = "/api/include")
 public class IncludeController {
 
     private final IncludeService includeService;
+
+    @PostMapping("/courseIncludeExercise/{courseId}/{exerciseId}")
+    public ResponseDto<IncludeDto> courseIncludeExercise(@PathVariable Integer courseId,@PathVariable Integer exerciseId){
+        return this.includeService.courseIncludesExercise(courseId, exerciseId);
+    }
 
     @PostMapping
     public ResponseDto<IncludeDto> create(@RequestBody IncludeDto dto){

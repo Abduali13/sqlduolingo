@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "translate")
+@RequestMapping(value = "/api/translate")
 public class TranslateController {
 
     private final TranslateService translateService;

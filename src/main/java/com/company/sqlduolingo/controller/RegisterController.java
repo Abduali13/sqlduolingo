@@ -8,10 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "register")
+@RequestMapping(value = "/api/register")
 public class RegisterController {
 
     private final RegisterService registerService;
+
+    @PostMapping("/registerToCourse/{ssn}/{courseName}")
+    public ResponseDto<RegisterDto> registerToCourse(@PathVariable Integer ssn, @PathVariable String courseName){
+        return this.registerService.registerUserToCourse(ssn, courseName);
+    }
 
     @PostMapping
     public ResponseDto<RegisterDto> create(@RequestBody RegisterDto dto){
@@ -32,4 +37,6 @@ public class RegisterController {
     public ResponseDto<RegisterDto> delete(@RequestParam(value = "id") Integer referenceId){
         return this.registerService.delete(referenceId);
     }
+
+
 }

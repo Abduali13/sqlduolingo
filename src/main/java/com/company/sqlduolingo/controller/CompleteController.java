@@ -8,10 +8,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "complete")
+@RequestMapping(value = "/api/complete")
 public class CompleteController {
 
     private final CompleteService completeService;
+
+
+    @PostMapping("/usersCompleteExercise/{ssn}/{exerciseId}")
+    public ResponseDto<CompleteDto> usersCompleteExercise(@PathVariable Integer ssn,@PathVariable Integer exerciseId){
+        return this.completeService.usersCompleteExercise(ssn, exerciseId);
+    }
+
 
     @PostMapping
     public ResponseDto<CompleteDto> create(@RequestBody CompleteDto dto){

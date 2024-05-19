@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "fig")
+@RequestMapping(value = "/api/fig")
 public class FIGController {
 
     private final FIGService figService;

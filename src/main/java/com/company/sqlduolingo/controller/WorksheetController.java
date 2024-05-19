@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "worksheet")
+@RequestMapping(value = "/api/worksheet")
 public class WorksheetController {
 
     private final WorksheetService worksheetService;

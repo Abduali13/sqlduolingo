@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "matches")
+@RequestMapping(value = "/api/matches")
 public class MatchesController {
 
     private final MatchesService matchesService;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "achievement")
+@RequestMapping(value = "/api/achievement")
 public class AchievementController {
 
     private final AchievementService achievementService;

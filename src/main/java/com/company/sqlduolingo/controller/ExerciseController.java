@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "exercise")
+@RequestMapping(value = "/api/exercise")
 public class ExerciseController {
 
     private final ExerciseService exerciseService;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "reference")
+@RequestMapping(value = "/api/reference")
 public class ReferenceController {
 
     private final ReferenceService referenceService;

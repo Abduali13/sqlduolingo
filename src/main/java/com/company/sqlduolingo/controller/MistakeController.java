@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "mistake")
+@RequestMapping(value = "/api/mistake")
 public class MistakeController {
 
     private final MistakeService mistakeService;

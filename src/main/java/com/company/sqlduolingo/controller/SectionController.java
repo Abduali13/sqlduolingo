@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "section")
+@RequestMapping(value = "/api/section")
 public class SectionController {
 
     private final SectionService sectionService;
