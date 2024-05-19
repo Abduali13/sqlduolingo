@@ -1,0 +1,18 @@
+
+spring:
+  application:
+    name: sqlduolingo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/school_db
+    username: school_user
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+#  main:
+#    allow-circular-references: true
+
+server:
+  port: 8080
