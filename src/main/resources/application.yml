@@ -3,8 +3,8 @@ spring:
   application:
     name: sqlduolingo
   datasource:
-    url: jdbc:postgresql://localhost:5432/school_db
-    username: school_user
+    url: jdbc:postgresql://localhost:5432/sqlduolingo
+    username: sqlduolingo_user
     password: root
     driver-class-name: org.postgresql.Driver
   jpa:
