@@ -1,5 +1,6 @@
 package com.company.sqlduolingo.entity;
 
+
 import com.company.sqlduolingo.entity.template.AbsEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,16 +11,17 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "matches")
-public class Matches extends AbsEntity {
+@Table(name = "translate_game")
+public class TranslateGame extends AbsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer matchId;
+    private Integer translateId;
 
     @Column(name = "exercise_id")
     private Integer exerciseId;
 
-    private String word;
-    private String definition;
+    private String query;
+    private String sentence;
+
 }

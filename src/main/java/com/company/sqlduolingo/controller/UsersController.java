@@ -1,9 +1,7 @@
 package com.company.sqlduolingo.controller;
 
 import com.company.sqlduolingo.dto.ResponseDto;
-import com.company.sqlduolingo.dto.TranslateDto;
 import com.company.sqlduolingo.dto.UsersDto;
-import com.company.sqlduolingo.service.TranslateService;
 import com.company.sqlduolingo.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

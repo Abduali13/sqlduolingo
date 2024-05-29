@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ExerciseMapper {
 
-    private final FIGMapper figMapper;
+    private final FIGGameMapper figGameMapper;
     private final IncludeMapper includeMapper;
-    private final MatchesMapper matchesMapper;
+    private final MatchesGameMapper matchesGameMapper;
     private final CompleteMapper completeMapper;
     private final ExampleMapper exampleMapper;
-    private final WorksheetMapper worksheetMapper;
+    private final MultipleQuestionGameMapper multipleQuestionGameMapper;
 
 
     public Exercise toEntity(ExerciseDto dto){
@@ -29,12 +29,12 @@ public class ExerciseMapper {
                 .exerciseId(exercise.getExerciseId())
                 .level(exercise.getLevel())
                 .score(exercise.getScore())
-                .figs(exercise.getFigs().stream().map(this.figMapper::toDto).toList())
-                .matches(exercise.getMatches().stream().map(this.matchesMapper::toDto).toList())
+                .figs(exercise.getFigGames().stream().map(this.figGameMapper::toDto).toList())
+                .matches(exercise.getMatches().stream().map(this.matchesGameMapper::toDto).toList())
                 .includes(exercise.getIncludes().stream().map(this.includeMapper::toDto).toList())
                 .completes(exercise.getCompletes().stream().map(this.completeMapper::toDto).toList())
                 .examples(exercise.getExamples().stream().map(this.exampleMapper::toDto).toList())
-                .worksheets(exercise.getWorksheets().stream().map(this.worksheetMapper::toDto).toList())
+                .worksheets(exercise.getMultipleQuestionGames().stream().map(this.multipleQuestionGameMapper::toDto).toList())
                 .createdAt(exercise.getCreatedAt())
                 .updatedAt(exercise.getUpdatedAt())
                 .deletedAt(exercise.getDeletedAt())

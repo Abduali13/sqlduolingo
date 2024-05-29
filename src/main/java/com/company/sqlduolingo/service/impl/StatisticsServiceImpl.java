@@ -1,9 +1,7 @@
 package com.company.sqlduolingo.service.impl;
 
-import com.company.sqlduolingo.dto.AchievementDto;
 import com.company.sqlduolingo.dto.ResponseDto;
 import com.company.sqlduolingo.dto.StatisticsDto;
-import com.company.sqlduolingo.entity.Achievement;
 import com.company.sqlduolingo.entity.Statistics;
 import com.company.sqlduolingo.repository.StatisticsRepository;
 import com.company.sqlduolingo.service.StatisticsService;

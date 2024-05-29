@@ -113,19 +113,5 @@ public class UsersServiceImpl implements UsersService {
                 .build();
     }
 
-//    @Override
-//    public ResponseDto<UsersDto> userRegisterToCourse(UsersDto usersDto, CourseDto courseDto) {
-//        return null;
-//    }
-//
-//    @Override
-//    public ResponseDto<UsersDto> userCompletesExercies(UsersDto usersDto, ExerciseDto exerciseDto) {
-//        return null;
-//    }
-//
-//    @Override
-//    public ResponseDto<UsersDto> userHasStatistics(UsersDto usersDto, StatisticsDto statisticsDto) {
-//        return null;
-//    }
 
 }

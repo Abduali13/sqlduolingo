@@ -39,16 +39,16 @@ public class Exercise extends AbsEntity {
     private List<Example> examples;
 
     @OneToMany(mappedBy = "exerciseId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Worksheet> worksheets;
+    private List<MultipleQuestionGame> MultipleQuestionGames;
 
     @OneToMany(mappedBy = "exerciseId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Translate> translates;
+    private List<TranslateGame> translateGames;
 
     @OneToMany(mappedBy = "exerciseId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<FIG> figs;
+    private List<FIGGame> figGames;
 
     @OneToMany(mappedBy = "exerciseId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Matches> matches;
+    private List<MatchesGame> matches;
 
 
 }

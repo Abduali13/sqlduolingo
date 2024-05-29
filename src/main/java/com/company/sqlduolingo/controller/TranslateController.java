@@ -1,37 +1,35 @@
 package com.company.sqlduolingo.controller;
 
 import com.company.sqlduolingo.dto.ResponseDto;
-import com.company.sqlduolingo.dto.StatisticsDto;
-import com.company.sqlduolingo.dto.TranslateDto;
-import com.company.sqlduolingo.service.StatisticsService;
-import com.company.sqlduolingo.service.TranslateService;
+import com.company.sqlduolingo.dto.TranslateGameDto;
+import com.company.sqlduolingo.service.TranslateGameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/translate")
+@RequestMapping(value = "/api/translate-game")
 public class TranslateController {
 
-    private final TranslateService translateService;
+    private final TranslateGameService translateGameService;
 
     @PostMapping
-    public ResponseDto<TranslateDto> create(@RequestBody TranslateDto dto){
-        return this.translateService.create(dto);
+    public ResponseDto<TranslateGameDto> create(@RequestBody TranslateGameDto dto){
+        return this.translateGameService.create(dto);
     }
 
     @GetMapping
-    public ResponseDto<TranslateDto> get(@RequestParam(value = "id") Integer translateId){
-        return this.translateService.get(translateId);
+    public ResponseDto<TranslateGameDto> get(@RequestParam(value = "id") Integer translateId){
+        return this.translateGameService.get(translateId);
     }
 
     @PutMapping
-    public ResponseDto<TranslateDto> update(@RequestParam(value = "id") Integer translateId, @RequestBody TranslateDto dto){
-        return this.translateService.update(translateId, dto);
+    public ResponseDto<TranslateGameDto> update(@RequestParam(value = "id") Integer translateId, @RequestBody TranslateGameDto dto){
+        return this.translateGameService.update(translateId, dto);
     }
 
     @DeleteMapping
-    public ResponseDto<TranslateDto> delete(@RequestParam(value = "id") Integer translateId){
-        return this.translateService.delete(translateId);
+    public ResponseDto<TranslateGameDto> delete(@RequestParam(value = "id") Integer translateId){
+        return this.translateGameService.delete(translateId);
     }
 }

@@ -11,17 +11,15 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "translate")
-public class Translate extends AbsEntity {
+@Table(name = "fig_game")
+public class FIGGame extends AbsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer translateId;
+    private Integer figId;
 
     @Column(name = "exercise_id")
     private Integer exerciseId;
 
-    private String query;
     private String sentence;
-
 }

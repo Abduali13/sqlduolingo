@@ -10,8 +10,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "worksheet")
-public class Worksheet extends AbsEntity {
+@Table(name = "test_game")
+public class MultipleQuestionGame extends AbsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

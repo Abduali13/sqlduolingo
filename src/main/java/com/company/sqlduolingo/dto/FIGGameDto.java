@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FIGDto {
+public class FIGGameDto {
 
     private Integer figId;
 

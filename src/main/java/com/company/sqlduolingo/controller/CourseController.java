@@ -13,7 +13,7 @@ public class CourseController {
 
     private final CourseService courseService;
 
-    @PostMapping()
+    @PostMapping
     public ResponseDto<CourseDto> create(@RequestBody CourseDto dto){
         return this.courseService.create(dto);
     }

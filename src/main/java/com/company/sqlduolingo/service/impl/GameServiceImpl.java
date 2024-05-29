@@ -15,10 +15,10 @@ import java.util.Optional;
 public class GameServiceImpl implements GameService {
 
     private final UsersRepository usersRepository;
-    private final MatchesRepository matchesRepository;
-    private final FIGRepository figRepository;
-    private final TranslateRepository translateRepository;
-    private final WorksheetRepository worksheetRepository;
+    private final MatchesGameRepository matchesGameRepository;
+    private final FIGGameRepository figGameRepository;
+    private final TranslateGameRepository translateGameRepository;
+    private final MultipleQuestionGameRepository multipleQuestionGameRepository;
     private final ExerciseRepository exerciseRepository;
     private final StatisticsRepository statisticsRepository;
     private final MistakeRepository mistakeRepository;
@@ -26,28 +26,28 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public void playMatchGame(Integer ssn, Integer matchId, String userAnswer) {
-        Matches matches = this.matchesRepository.findMatchesByMatchIdAndDeletedAtIsNull(matchId).orElseThrow(() -> new RuntimeException("Game can not load"));
+        MatchesGame matchesGame = this.matchesGameRepository.findMatchesByMatchIdAndDeletedAtIsNull(matchId).orElseThrow(() -> new RuntimeException("Game can not load"));
 
-        processGame(ssn, matches.getExerciseId(), userAnswer , matches.getDefinition());
+        processGame(ssn, matchesGame.getExerciseId(), userAnswer , matchesGame.getDefinition());
     }
 
     @Override
     public void playFIGGame(Integer ssn, Integer figId, String userAnswer) {
-        FIG fig = this.figRepository.findFIGByFigIdAndDeletedAtIsNull(figId).orElseThrow(() -> new RuntimeException("Game can not load"));
-        processGame(ssn, fig.getExerciseId(), userAnswer, fig.getSentence());
+        FIGGame figGame = this.figGameRepository.findFIGByFigIdAndDeletedAtIsNull(figId).orElseThrow(() -> new RuntimeException("Game can not load"));
+        processGame(ssn, figGame.getExerciseId(), userAnswer, figGame.getSentence());
     }
 
     @Override
     public void playTranslateGame(Integer ssn, Integer translateId, String userAnswer) {
-        Translate translate = this.translateRepository.findTranslateByTranslateIdAndDeletedAtIsNull(translateId).orElseThrow(() -> new RuntimeException("Game can not load"));
-        processGame(ssn, translate.getExerciseId(), userAnswer, translate.getSentence());
+        TranslateGame translateGame = this.translateGameRepository.findTranslateByTranslateIdAndDeletedAtIsNull(translateId).orElseThrow(() -> new RuntimeException("Game can not load"));
+        processGame(ssn, translateGame.getExerciseId(), userAnswer, translateGame.getSentence());
 
     }
 
     @Override
     public void playTestGame(Integer ssn, Integer worksheetId, String userAnswer) {
-        Worksheet worksheet = this.worksheetRepository.findWorksheetByWorksheetIdAndDeletedAtIsNull(worksheetId).orElseThrow(() -> new RuntimeException("Game can not load"));
-        processGame(ssn, worksheet.getExerciseId(), userAnswer, worksheet.getAnswer());
+        MultipleQuestionGame MultipleQuestionGame = this.multipleQuestionGameRepository.findWorksheetByWorksheetIdAndDeletedAtIsNull(worksheetId).orElseThrow(() -> new RuntimeException("Game can not load"));
+        processGame(ssn, MultipleQuestionGame.getExerciseId(), userAnswer, MultipleQuestionGame.getAnswer());
     }
 
 

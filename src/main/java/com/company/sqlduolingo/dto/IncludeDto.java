@@ -1,8 +1,5 @@
 package com.company.sqlduolingo.dto;
 
-
-import com.company.sqlduolingo.entity.template.AbsEntity;
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;

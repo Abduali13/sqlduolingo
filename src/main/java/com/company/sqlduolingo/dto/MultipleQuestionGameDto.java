@@ -1,6 +1,5 @@
 package com.company.sqlduolingo.dto;
 
-
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,14 +9,14 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MatchesDto {
+public class MultipleQuestionGameDto {
 
-    private Integer matchId;
+    private Integer worksheetId;
 
     private Integer exerciseId;
 
-    private String word;
-    private String definition;
+    private String question;
+    private String answer;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

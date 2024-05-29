@@ -2,7 +2,6 @@ package com.company.sqlduolingo.service.mapper;
 
 import com.company.sqlduolingo.dto.UsersDto;
 import com.company.sqlduolingo.entity.Users;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

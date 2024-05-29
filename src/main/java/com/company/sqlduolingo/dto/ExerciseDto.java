@@ -1,5 +1,6 @@
 package com.company.sqlduolingo.dto;
 
+import com.company.sqlduolingo.entity.MultipleQuestionGame;
 import com.company.sqlduolingo.entity.enums.Level;
 import com.company.sqlduolingo.entity.enums.Type;
 import lombok.*;
@@ -28,13 +29,13 @@ public class ExerciseDto {
 
     private List<ExampleDto> examples;
 
-    private List<WorksheetDto> worksheets;
+    private List<MultipleQuestionGameDto> worksheets;
 
-    private List<TranslateDto> translates;
+    private List<TranslateGameDto> translates;
 
-    private List<FIGDto> figs;
+    private List<FIGGameDto> figs;
 
-    private List<MatchesDto> matches;
+    private List<MatchesGameDto> matches;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
