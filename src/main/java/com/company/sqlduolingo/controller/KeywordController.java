@@ -4,7 +4,10 @@ import com.company.sqlduolingo.dto.KeywordDto;
 import com.company.sqlduolingo.dto.ResponseDto;
 import com.company.sqlduolingo.service.KeywordService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static com.company.sqlduolingo.dto.SimpleResponseDto.convertStatusCodeByData;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,23 +17,23 @@ public class KeywordController {
     private final KeywordService keywordService;
 
     @PostMapping
-    public ResponseDto<KeywordDto> create(@RequestBody KeywordDto dto){
-        return this.keywordService.create(dto);
+    public ResponseEntity<ResponseDto<KeywordDto>> create(@RequestBody KeywordDto dto){
+        return convertStatusCodeByData(this.keywordService.create(dto));
     }
 
     @GetMapping
-    public ResponseDto<KeywordDto> get(@RequestParam(value = "id") Integer keywordId){
-        return this.keywordService.get(keywordId);
+    public ResponseEntity<ResponseDto<KeywordDto>> get(@RequestParam(value = "id") Integer keywordId){
+        return convertStatusCodeByData(this.keywordService.get(keywordId));
     }
 
     @PutMapping
-    public ResponseDto<KeywordDto> update(@RequestParam(value = "id") Integer keywordId, @RequestBody KeywordDto dto){
-        return this.keywordService.update(keywordId, dto);
+    public ResponseEntity<ResponseDto<KeywordDto>> update(@RequestParam(value = "id") Integer keywordId, @RequestBody KeywordDto dto){
+        return convertStatusCodeByData(this.keywordService.update(keywordId, dto));
     }
 
     @DeleteMapping
-    public ResponseDto<KeywordDto> delete(@RequestParam(value = "id") Integer keywordId){
-        return this.keywordService.delete(keywordId);
+    public ResponseEntity<ResponseDto<KeywordDto>> delete(@RequestParam(value = "id") Integer keywordId){
+        return convertStatusCodeByData(this.keywordService.delete(keywordId));
     }
 
 }

@@ -48,6 +48,23 @@ public class UsersMapper {
                 .phoneNumber(users.getPhoneNumber())
                 .joinedDate(users.getJoinedDate())
                 .birthDate(users.getBirthDate())
+                .createdAt(users.getCreatedAt())
+                .updatedAt(users.getUpdatedAt())
+                .deletedAt(users.getDeletedAt())
+                .build();
+    }
+
+
+    public UsersDto toDtoWithAttr(Users users) {
+        return UsersDto.builder()
+                .SSN(users.getSSN())
+                .name(users.getName())
+                .username(users.getUsername())
+                .email(users.getEmail())
+                .password(users.getPassword())
+                .phoneNumber(users.getPhoneNumber())
+                .joinedDate(users.getJoinedDate())
+                .birthDate(users.getBirthDate())
                 .courseTaken(users.getCourseTaken())
                 .registerId(users.getRegisterId())
                 .statisticsId(users.getStatisticsId())

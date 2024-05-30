@@ -38,23 +38,33 @@ public class UsersServiceImpl implements UsersService {
         } catch (Exception e) {
             return ResponseDto.<UsersDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("User error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
     @Override
     public ResponseDto<UsersDto> get(Integer userSSN) {
-        Optional<Users> optional = this.usersRepository.findUsersBySSNAndDeletedAtIsNull(userSSN);
-        if (optional.isEmpty()) {
+        try {
+            Optional<Users> optional = this.usersRepository.findUsersBySSNAndDeletedAtIsNull(userSSN);
+            if (optional.isEmpty()) {
+                return ResponseDto.<UsersDto>builder()
+                        .code(-1)
+                        .message(String.format("User with %d id is not found", userSSN))
+                        .build();
+            }
             return ResponseDto.<UsersDto>builder()
-                    .code(-1)
-                    .message(String.format("Card with %d id is not found", userSSN))
+                    .success(true)
+                    .message("OK")
+                    .content(this.usersMapper.toDto(optional.get())).build();
+        }
+
+        catch (Exception e){
+            return ResponseDto.<UsersDto>builder()
+                    .code(-3)
+                    .message(e.getMessage())
                     .build();
         }
-        return ResponseDto.<UsersDto>builder()
-                .success(true)
-                .message("OK")
-                .content(this.usersMapper.toDto(optional.get())).build();
+
     }
 
     @Override
@@ -63,7 +73,7 @@ public class UsersServiceImpl implements UsersService {
         if (optional.isEmpty()) {
             return ResponseDto.<UsersDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", userSSN))
+                    .message(String.format("User with %d id is not found", userSSN))
                     .build();
         }
         return ResponseDto.<UsersDto>builder()
@@ -86,7 +96,7 @@ public class UsersServiceImpl implements UsersService {
         if (optional.isEmpty()) {
             return ResponseDto.<UsersDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", userSSN))
+                    .message(String.format("User with %d id is not found", userSSN))
                     .build();
         }
         Users users = optional.get();

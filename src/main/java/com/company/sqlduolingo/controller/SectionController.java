@@ -4,7 +4,10 @@ import com.company.sqlduolingo.dto.ResponseDto;
 import com.company.sqlduolingo.dto.SectionDto;
 import com.company.sqlduolingo.service.SectionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static com.company.sqlduolingo.dto.SimpleResponseDto.convertStatusCodeByData;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,23 +17,23 @@ public class SectionController {
     private final SectionService sectionService;
 
     @PostMapping
-    public ResponseDto<SectionDto> create(@RequestBody SectionDto dto){
-        return this.sectionService.create(dto);
+    public ResponseEntity<ResponseDto<SectionDto>> create(@RequestBody SectionDto dto){
+        return convertStatusCodeByData(this.sectionService.create(dto));
     }
 
     @GetMapping
-    public ResponseDto<SectionDto> get(@RequestParam(value = "id") Integer sectionId){
-        return this.sectionService.get(sectionId);
+    public ResponseEntity<ResponseDto<SectionDto>> get(@RequestParam(value = "id") Integer sectionId){
+        return convertStatusCodeByData(this.sectionService.get(sectionId));
     }
 
     @PutMapping
-    public ResponseDto<SectionDto> update(@RequestParam(value = "id") Integer sectionId, @RequestBody SectionDto dto){
-        return this.sectionService.update(sectionId, dto);
+    public ResponseEntity<ResponseDto<SectionDto>> update(@RequestParam(value = "id") Integer sectionId, @RequestBody SectionDto dto){
+        return convertStatusCodeByData(this.sectionService.update(sectionId, dto));
     }
 
     @DeleteMapping
-    public ResponseDto<SectionDto> delete(@RequestParam(value = "id") Integer sectionId){
-        return this.sectionService.delete(sectionId);
+    public ResponseEntity<ResponseDto<SectionDto>> delete(@RequestParam(value = "id") Integer sectionId){
+        return convertStatusCodeByData(this.sectionService.delete(sectionId));
     }
 
 }

@@ -4,7 +4,10 @@ import com.company.sqlduolingo.dto.FriendsDto;
 import com.company.sqlduolingo.dto.ResponseDto;
 import com.company.sqlduolingo.service.FriendsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static com.company.sqlduolingo.dto.SimpleResponseDto.convertStatusCodeByData;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,23 +17,23 @@ public class FriendsController {
     private final FriendsService friendsService;
 
     @PostMapping
-    public ResponseDto<FriendsDto> create(@RequestBody FriendsDto dto){
-        return this.friendsService.create(dto);
+    public ResponseEntity<ResponseDto<FriendsDto>> create(@RequestBody FriendsDto dto){
+        return convertStatusCodeByData(this.friendsService.create(dto));
     }
 
     @GetMapping
-    public ResponseDto<FriendsDto> get(@RequestParam(value = "id") Integer friendsId){
-        return this.friendsService.get(friendsId);
+    public ResponseEntity<ResponseDto<FriendsDto>> get(@RequestParam(value = "id") Integer friendsId){
+        return convertStatusCodeByData(this.friendsService.get(friendsId));
     }
 
     @PutMapping
-    public ResponseDto<FriendsDto> update(@RequestParam(value = "id") Integer friendsId, @RequestBody FriendsDto dto){
-        return this.friendsService.update(friendsId, dto);
+    public ResponseEntity<ResponseDto<FriendsDto>> update(@RequestParam(value = "id") Integer friendsId, @RequestBody FriendsDto dto){
+        return convertStatusCodeByData(this.friendsService.update(friendsId, dto));
     }
 
     @DeleteMapping
-    public ResponseDto<FriendsDto> delete(@RequestParam(value = "id") Integer friendsId){
-        return this.friendsService.delete(friendsId);
+    public ResponseEntity<ResponseDto<FriendsDto>> delete(@RequestParam(value = "id") Integer friendsId){
+        return convertStatusCodeByData(this.friendsService.delete(friendsId));
     }
 
 }

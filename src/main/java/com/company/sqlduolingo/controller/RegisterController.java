@@ -4,7 +4,10 @@ import com.company.sqlduolingo.dto.RegisterDto;
 import com.company.sqlduolingo.dto.ResponseDto;
 import com.company.sqlduolingo.service.RegisterService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static com.company.sqlduolingo.dto.SimpleResponseDto.convertStatusCodeByData;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,8 +17,8 @@ public class RegisterController {
     private final RegisterService registerService;
 
     @PostMapping("/registerToCourse/{ssn}/{courseName}")
-    public ResponseDto<RegisterDto> registerToCourse(@PathVariable Integer ssn, @PathVariable String courseName){
-        return this.registerService.registerUserToCourse(ssn, courseName);
+    public ResponseEntity<ResponseDto<RegisterDto>> registerToCourse(@PathVariable Integer ssn, @PathVariable String courseName){
+        return convertStatusCodeByData(this.registerService.registerUserToCourse(ssn, courseName));
     }
 
     @PostMapping
