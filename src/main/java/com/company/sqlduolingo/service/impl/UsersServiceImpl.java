@@ -2,6 +2,7 @@ package com.company.sqlduolingo.service.impl;
 
 import com.company.sqlduolingo.dto.*;
 import com.company.sqlduolingo.entity.Users;
+import com.company.sqlduolingo.exception.ResourceNotFoundException;
 import com.company.sqlduolingo.repository.UsersRepository;
 import com.company.sqlduolingo.service.UsersService;
 import com.company.sqlduolingo.service.mapper.UsersMapper;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -45,19 +45,13 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public ResponseDto<UsersDto> get(Integer userSSN) {
         try {
-            Optional<Users> optional = this.usersRepository.findUsersBySSNAndDeletedAtIsNull(userSSN);
-            if (optional.isEmpty()) {
-                return ResponseDto.<UsersDto>builder()
-                        .code(-1)
-                        .message(String.format("User with %d id is not found", userSSN))
-                        .build();
-            }
+            Users users = this.usersRepository.findUsersBySSNAndDeletedAtIsNull(userSSN).orElseThrow(() -> new ResourceNotFoundException("Users", "userSSN", userSSN));
+
             return ResponseDto.<UsersDto>builder()
                     .success(true)
                     .message("OK")
-                    .content(this.usersMapper.toDto(optional.get())).build();
+                    .content(this.usersMapper.toDto(users)).build();
         }
-
         catch (Exception e){
             return ResponseDto.<UsersDto>builder()
                     .code(-3)
@@ -69,45 +63,51 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public ResponseDto<UsersDto> update(Integer userSSN, UsersDto dto) {
-        Optional<Users> optional = this.usersRepository.findUsersBySSNAndDeletedAtIsNull(userSSN);
-        if (optional.isEmpty()) {
+        try {
+            Users users = this.usersRepository.findUsersBySSNAndDeletedAtIsNull(userSSN).orElseThrow(() -> new ResourceNotFoundException("Users", "userSSN", userSSN));
+
             return ResponseDto.<UsersDto>builder()
-                    .code(-1)
-                    .message(String.format("User with %d id is not found", userSSN))
+                    .success(true)
+                    .message("OK")
+                    .content(this.usersMapper.toDto(
+                                    this.usersRepository.save(
+                                            this.usersMapper.update(
+                                                    users, dto
+                                            )
+                                    )
+                            )
+                    )
                     .build();
         }
-        return ResponseDto.<UsersDto>builder()
-                .success(true)
-                .message("OK")
-                .content(this.usersMapper.toDto(
-                                this.usersRepository.save(
-                                        this.usersMapper.update(
-                                                optional.get(), dto
-                                        )
-                                )
-                        )
-                )
-                .build();
+        catch (Exception e){
+            return ResponseDto.<UsersDto>builder()
+                    .code(-3)
+                    .message(e.getMessage())
+                    .build();
+        }
+
     }
 
     @Override
     public ResponseDto<UsersDto> delete(Integer userSSN) {
-        Optional<Users> optional = this.usersRepository.findUsersBySSNAndDeletedAtIsNull(userSSN);
-        if (optional.isEmpty()) {
+        try {
+            Users users = this.usersRepository.findUsersBySSNAndDeletedAtIsNull(userSSN).orElseThrow(() -> new ResourceNotFoundException("Users", "userSSN", userSSN));
+
+            users.setDeletedAt(LocalDateTime.now());
             return ResponseDto.<UsersDto>builder()
-                    .code(-1)
-                    .message(String.format("User with %d id is not found", userSSN))
+                    .success(true)
+                    .message("OK")
+                    .content(
+                            this.usersMapper.toDto(
+                                    this.usersRepository.save(users))
+                    ).build();
+        }
+        catch (Exception e){
+            return ResponseDto.<UsersDto>builder()
+                    .code(-3)
+                    .message(e.getMessage())
                     .build();
         }
-        Users users = optional.get();
-        users.setDeletedAt(LocalDateTime.now());
-        return ResponseDto.<UsersDto>builder()
-                .success(true)
-                .message("OK")
-                .content(
-                        this.usersMapper.toDto(
-                                this.usersRepository.save(users))
-                ).build();
     }
 
     @Override

@@ -38,7 +38,7 @@ public class KeywordServiceImpl implements KeywordService {
         } catch (Exception e) {
             return ResponseDto.<KeywordDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Keyword error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
@@ -48,7 +48,7 @@ public class KeywordServiceImpl implements KeywordService {
         if (optional.isEmpty()) {
             return ResponseDto.<KeywordDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", keywordId))
+                    .message(String.format("Keyword with %d id is not found", keywordId))
                     .build();
         }
         return ResponseDto.<KeywordDto>builder()
@@ -63,7 +63,7 @@ public class KeywordServiceImpl implements KeywordService {
         if (optional.isEmpty()) {
             return ResponseDto.<KeywordDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", keywordId))
+                    .message(String.format("Keyword with %d id is not found", keywordId))
                     .build();
         }
         return ResponseDto.<KeywordDto>builder()
@@ -86,7 +86,7 @@ public class KeywordServiceImpl implements KeywordService {
         if (optional.isEmpty()) {
             return ResponseDto.<KeywordDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", keywordId))
+                    .message(String.format("Keyword with %d id is not found", keywordId))
                     .build();
         }
         Keyword keyword = optional.get();

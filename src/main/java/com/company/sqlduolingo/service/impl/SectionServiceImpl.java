@@ -38,7 +38,7 @@ public class SectionServiceImpl implements SectionService {
         } catch (Exception e) {
             return ResponseDto.<SectionDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Section error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
@@ -48,7 +48,7 @@ public class SectionServiceImpl implements SectionService {
         if (optional.isEmpty()) {
             return ResponseDto.<SectionDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", sectionId))
+                    .message(String.format("Section with %d id is not found", sectionId))
                     .build();
         }
         return ResponseDto.<SectionDto>builder()
@@ -63,7 +63,7 @@ public class SectionServiceImpl implements SectionService {
         if (optional.isEmpty()) {
             return ResponseDto.<SectionDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", sectionId))
+                    .message(String.format("Section with %d id is not found", sectionId))
                     .build();
         }
         return ResponseDto.<SectionDto>builder()
@@ -86,7 +86,7 @@ public class SectionServiceImpl implements SectionService {
         if (optional.isEmpty()) {
             return ResponseDto.<SectionDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", sectionId))
+                    .message(String.format("Section with %d id is not found", sectionId))
                     .build();
         }
         Section section = optional.get();

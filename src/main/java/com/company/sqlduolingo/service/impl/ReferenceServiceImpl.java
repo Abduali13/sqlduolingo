@@ -38,7 +38,7 @@ public class ReferenceServiceImpl implements ReferenceService {
         } catch (Exception e) {
             return ResponseDto.<ReferenceDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Reference error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
@@ -48,7 +48,7 @@ public class ReferenceServiceImpl implements ReferenceService {
         if (optional.isEmpty()) {
             return ResponseDto.<ReferenceDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", referenceId))
+                    .message(String.format("Reference with %d id is not found", referenceId))
                     .build();
         }
         return ResponseDto.<ReferenceDto>builder()
@@ -63,7 +63,7 @@ public class ReferenceServiceImpl implements ReferenceService {
         if (optional.isEmpty()) {
             return ResponseDto.<ReferenceDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", referenceId))
+                    .message(String.format("Reference with %d id is not found", referenceId))
                     .build();
         }
         return ResponseDto.<ReferenceDto>builder()
@@ -86,7 +86,7 @@ public class ReferenceServiceImpl implements ReferenceService {
         if (optional.isEmpty()) {
             return ResponseDto.<ReferenceDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", referenceId))
+                    .message(String.format("Reference with %d id is not found", referenceId))
                     .build();
         }
         Reference reference = optional.get();

@@ -38,7 +38,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         } catch (Exception e) {
             return ResponseDto.<StatisticsDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Statistics error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
@@ -48,7 +48,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         if (optional.isEmpty()) {
             return ResponseDto.<StatisticsDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", statisticsId))
+                    .message(String.format("Statistics with %d id is not found", statisticsId))
                     .build();
         }
         return ResponseDto.<StatisticsDto>builder()
@@ -63,7 +63,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         if (optional.isEmpty()) {
             return ResponseDto.<StatisticsDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", statisticsId))
+                    .message(String.format("Statistics with %d id is not found", statisticsId))
                     .build();
         }
         return ResponseDto.<StatisticsDto>builder()
@@ -86,7 +86,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         if (optional.isEmpty()) {
             return ResponseDto.<StatisticsDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", statisticsId))
+                    .message(String.format("Statistics with %d id is not found", statisticsId))
                     .build();
         }
         Statistics statistics = optional.get();

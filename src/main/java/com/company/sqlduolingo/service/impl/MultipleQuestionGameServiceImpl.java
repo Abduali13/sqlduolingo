@@ -38,7 +38,7 @@ public class MultipleQuestionGameServiceImpl implements MultipleQuestionGameServ
         } catch (Exception e) {
             return ResponseDto.<MultipleQuestionGameDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Multiple choice question game error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
@@ -48,7 +48,7 @@ public class MultipleQuestionGameServiceImpl implements MultipleQuestionGameServ
         if (optional.isEmpty()) {
             return ResponseDto.<MultipleQuestionGameDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", worksheetId))
+                    .message(String.format("Multiple choice question game with %d id is not found", worksheetId))
                     .build();
         }
         return ResponseDto.<MultipleQuestionGameDto>builder()
@@ -63,7 +63,7 @@ public class MultipleQuestionGameServiceImpl implements MultipleQuestionGameServ
         if (optional.isEmpty()) {
             return ResponseDto.<MultipleQuestionGameDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", worksheetId))
+                    .message(String.format("Multiple choice question game with %d id is not found", worksheetId))
                     .build();
         }
         return ResponseDto.<MultipleQuestionGameDto>builder()
@@ -86,7 +86,7 @@ public class MultipleQuestionGameServiceImpl implements MultipleQuestionGameServ
         if (optional.isEmpty()) {
             return ResponseDto.<MultipleQuestionGameDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", worksheetId))
+                    .message(String.format("Multiple choice question game with %d id is not found", worksheetId))
                     .build();
         }
         MultipleQuestionGame MultipleQuestionGame = optional.get();

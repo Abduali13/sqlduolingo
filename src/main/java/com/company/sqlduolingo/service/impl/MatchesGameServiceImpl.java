@@ -38,7 +38,7 @@ public class MatchesGameServiceImpl implements MatchesGameService {
         } catch (Exception e) {
             return ResponseDto.<MatchesGameDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Matching game error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
@@ -48,7 +48,7 @@ public class MatchesGameServiceImpl implements MatchesGameService {
         if (optional.isEmpty()) {
             return ResponseDto.<MatchesGameDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", matchesId))
+                    .message(String.format("Matching game with %d id is not found", matchesId))
                     .build();
         }
         return ResponseDto.<MatchesGameDto>builder()
@@ -63,7 +63,7 @@ public class MatchesGameServiceImpl implements MatchesGameService {
         if (optional.isEmpty()) {
             return ResponseDto.<MatchesGameDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", matchesId))
+                    .message(String.format("Matching game with %d id is not found", matchesId))
                     .build();
         }
         return ResponseDto.<MatchesGameDto>builder()
@@ -86,7 +86,7 @@ public class MatchesGameServiceImpl implements MatchesGameService {
         if (optional.isEmpty()) {
             return ResponseDto.<MatchesGameDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", matchesId))
+                    .message(String.format("Matching game with %d id is not found", matchesId))
                     .build();
         }
         MatchesGame matchesGame = optional.get();

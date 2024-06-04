@@ -38,7 +38,7 @@ public class MistakeServiceImpl implements MistakeService {
         } catch (Exception e) {
             return ResponseDto.<MistakeDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Mistake error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
@@ -48,7 +48,7 @@ public class MistakeServiceImpl implements MistakeService {
         if (optional.isEmpty()) {
             return ResponseDto.<MistakeDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", mistakeId))
+                    .message(String.format("Mistake with %d id is not found", mistakeId))
                     .build();
         }
         return ResponseDto.<MistakeDto>builder()
@@ -63,7 +63,7 @@ public class MistakeServiceImpl implements MistakeService {
         if (optional.isEmpty()) {
             return ResponseDto.<MistakeDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", mistakeId))
+                    .message(String.format("Mistake with %d id is not found", mistakeId))
                     .build();
         }
         return ResponseDto.<MistakeDto>builder()
@@ -86,7 +86,7 @@ public class MistakeServiceImpl implements MistakeService {
         if (optional.isEmpty()) {
             return ResponseDto.<MistakeDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", mistakeId))
+                    .message(String.format("Mistake with %d id is not found", mistakeId))
                     .build();
         }
         Mistake mistake = optional.get();

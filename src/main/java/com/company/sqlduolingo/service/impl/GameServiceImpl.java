@@ -67,7 +67,7 @@ public class GameServiceImpl implements GameService {
             this.mistakeRepository.save(mistake);
             stats.setMistakes(List.of(mistake));
         }
-        users.setStatistics(stats);
+        users.setStatisticsId(stats.getStatisticsId());
 
         this.statisticsRepository.save(stats);
         this.usersRepository.save(users);

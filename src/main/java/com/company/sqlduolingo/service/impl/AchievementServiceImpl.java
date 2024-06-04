@@ -3,6 +3,7 @@ package com.company.sqlduolingo.service.impl;
 import com.company.sqlduolingo.dto.AchievementDto;
 import com.company.sqlduolingo.dto.ResponseDto;
 import com.company.sqlduolingo.entity.Achievement;
+import com.company.sqlduolingo.exception.ResourceNotFoundException;
 import com.company.sqlduolingo.repository.AchievementRepository;
 import com.company.sqlduolingo.service.AchievementService;
 import com.company.sqlduolingo.service.mapper.AchievementMapper;
@@ -10,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -38,66 +38,77 @@ public class AchievementServiceImpl implements AchievementService {
         } catch (Exception e) {
             return ResponseDto.<AchievementDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Achievement error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
     @Override
     public ResponseDto<AchievementDto> get(Integer achievementId) {
-        Optional<Achievement> optional = this.achievementRepository.findAchievementByAchievementIdAndDeletedAtIsNull(achievementId);
-        if (optional.isEmpty()) {
+        try {
+            Achievement achievement = this.achievementRepository.findAchievementByAchievementIdAndDeletedAtIsNull(achievementId).orElseThrow(() -> new ResourceNotFoundException("Achievement", "achievementId", achievementId));
+
             return ResponseDto.<AchievementDto>builder()
-                    .code(-1)
-                    .message(String.format("Card with %d id is not found", achievementId))
+                    .success(true)
+                    .message("OK")
+                    .content(this.achievementMapper.toDto(achievement)).build();
+        }
+        catch (Exception e){
+            return ResponseDto.<AchievementDto>builder()
+                    .code(-3)
+                    .message(e.getMessage())
                     .build();
         }
-        return ResponseDto.<AchievementDto>builder()
-                .success(true)
-                .message("OK")
-                .content(this.achievementMapper.toDto(optional.get())).build();
+
     }
 
     @Override
     public ResponseDto<AchievementDto> update(Integer achievementId, AchievementDto dto) {
-        Optional<Achievement> optional = this.achievementRepository.findAchievementByAchievementIdAndDeletedAtIsNull(achievementId);
-        if (optional.isEmpty()) {
+        try {
+            Achievement achievement = this.achievementRepository.findAchievementByAchievementIdAndDeletedAtIsNull(achievementId).orElseThrow(() -> new ResourceNotFoundException("Achievement", "achievementId", achievementId));
+
             return ResponseDto.<AchievementDto>builder()
-                    .code(-1)
-                    .message(String.format("Card with %d id is not found", achievementId))
+                    .success(true)
+                    .message("OK")
+                    .content(this.achievementMapper.toDto(
+                                    this.achievementRepository.save(
+                                            this.achievementMapper.update(
+                                                    achievement, dto
+                                            )
+                                    )
+                            )
+                    )
                     .build();
         }
-        return ResponseDto.<AchievementDto>builder()
-                .success(true)
-                .message("OK")
-                .content(this.achievementMapper.toDto(
-                                this.achievementRepository.save(
-                                        this.achievementMapper.update(
-                                                optional.get(), dto
-                                        )
-                                )
-                        )
-                )
-                .build();
+
+        catch (Exception e){
+            return ResponseDto.<AchievementDto>builder()
+                    .code(-3)
+                    .message(e.getMessage())
+                    .build();
+        }
 
     }
 
     @Override
     public ResponseDto<AchievementDto> delete(Integer achievementId) {
-        Optional<Achievement> optional = this.achievementRepository.findAchievementByAchievementIdAndDeletedAtIsNull(achievementId);
-        if (optional.isEmpty()) {
+        try {
+            Achievement achievement = this.achievementRepository.findAchievementByAchievementIdAndDeletedAtIsNull(achievementId).orElseThrow(() -> new ResourceNotFoundException("Achievement", "achievementId", achievementId));
+
+            achievement.setDeletedAt(LocalDateTime.now());
             return ResponseDto.<AchievementDto>builder()
-                    .code(-1)
-                    .message(String.format("Card with %d id is not found", achievementId))
+                    .success(true)
+                    .message("OK")
+                    .content(
+                            this.achievementMapper.toDto(
+                                    this.achievementRepository.save(achievement))
+                    ).build();
+        }
+
+        catch (Exception e){
+            return ResponseDto.<AchievementDto>builder()
+                    .code(-3)
+                    .message(e.getMessage())
                     .build();
         }
-        Achievement achievement = optional.get();
-        achievement.setDeletedAt(LocalDateTime.now());
-        return ResponseDto.<AchievementDto>builder()
-                .success(true)
-                .message("OK")
-                .content(
-                        this.achievementMapper.toDto(
-                                this.achievementRepository.save(achievement))
-                ).build();
     }
 }

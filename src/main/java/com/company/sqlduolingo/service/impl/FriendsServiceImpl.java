@@ -38,7 +38,7 @@ public class FriendsServiceImpl implements FriendsService {
         } catch (Exception e) {
             return ResponseDto.<FriendsDto>builder()
                     .code(-2)
-                    .message(String.format("Card error while saving; message :: %s", e.getMessage())).build();
+                    .message(String.format("Friend error while saving; message :: %s", e.getMessage())).build();
         }
     }
 
@@ -48,7 +48,7 @@ public class FriendsServiceImpl implements FriendsService {
         if (optional.isEmpty()) {
             return ResponseDto.<FriendsDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", friendsId))
+                    .message(String.format("Friend with %d id is not found", friendsId))
                     .build();
         }
         return ResponseDto.<FriendsDto>builder()
@@ -63,7 +63,7 @@ public class FriendsServiceImpl implements FriendsService {
         if (optional.isEmpty()) {
             return ResponseDto.<FriendsDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", friendsId))
+                    .message(String.format("Friend with %d id is not found", friendsId))
                     .build();
         }
         return ResponseDto.<FriendsDto>builder()
@@ -86,7 +86,7 @@ public class FriendsServiceImpl implements FriendsService {
         if (optional.isEmpty()) {
             return ResponseDto.<FriendsDto>builder()
                     .code(-1)
-                    .message(String.format("Card with %d id is not found", friendsId))
+                    .message(String.format("Friend with %d id is not found", friendsId))
                     .build();
         }
         Friends friends = optional.get();

@@ -48,30 +48,13 @@ public class UsersMapper {
                 .phoneNumber(users.getPhoneNumber())
                 .joinedDate(users.getJoinedDate())
                 .birthDate(users.getBirthDate())
-                .createdAt(users.getCreatedAt())
-                .updatedAt(users.getUpdatedAt())
-                .deletedAt(users.getDeletedAt())
-                .build();
-    }
-
-
-    public UsersDto toDtoWithAttr(Users users) {
-        return UsersDto.builder()
-                .SSN(users.getSSN())
-                .name(users.getName())
-                .username(users.getUsername())
-                .email(users.getEmail())
-                .password(users.getPassword())
-                .phoneNumber(users.getPhoneNumber())
-                .joinedDate(users.getJoinedDate())
-                .birthDate(users.getBirthDate())
                 .courseTaken(users.getCourseTaken())
                 .registerId(users.getRegisterId())
                 .statisticsId(users.getStatisticsId())
-                .completes(users.getCompletes().stream().map(this.completeMapper::toDto).toList())
-                .registers(users.getRegisters().stream().map(this.registerMapper::toDto).toList())
-                .friends(users.getFriends().stream().map(this.friendsMapper::toDto).toList())
-                .statistics(this.statisticsMapper.toDto(users.getStatistics()))
+                .completes(users.getCompletes() != null ? users.getCompletes().stream().map(this.completeMapper::toDto).toList() : null)
+                .registers(users.getRegisters() != null ? users.getRegisters().stream().map(this.registerMapper::toDto).toList() : null)
+                .friends(users.getFriends() != null ? users.getFriends().stream().map(this.friendsMapper::toDto).toList() : null)
+                .statistics(users.getStatistics() != null ? this.statisticsMapper.toDto(users.getStatistics()) : null)
                 .friendsFollowers(users.getFriendsFollowers())
                 .friendsFollowing(users.getFriendsFollowing())
                 .createdAt(users.getCreatedAt())
@@ -79,6 +62,8 @@ public class UsersMapper {
                 .deletedAt(users.getDeletedAt())
                 .build();
     }
+
+
 
     public Users update(Users users, UsersDto dto){
         if (dto.getName() != null) {
